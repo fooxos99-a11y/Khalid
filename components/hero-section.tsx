@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const BRAND_LOGO_MASK_URL = 'url("/%D8%AE%D8%A7%D9%84%D8%AF.png")'
+const BRAND_LOGO_SRC = "/%D8%AE%D8%A7%D9%84%D8%AF.png"
 
 export function HeroSection() {
   const [isPortraitMobile, setIsPortraitMobile] = useState(false)
@@ -32,24 +32,15 @@ export function HeroSection() {
           <div className="flex flex-col items-center text-center">
             <div className={`relative ${isPortraitMobile ? "mb-3" : "mb-1 sm:mb-2"}`}>
               <div className="absolute inset-x-[14%] bottom-[8%] h-14 rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.24)_0%,rgba(143,176,255,0)_72%)] blur-2xl" />
-              <div
-                role="img"
-                aria-label="مجمع الحبيِّب لتحفيظ القرآن الكريم"
-                className={`relative aspect-[5625/4500] bg-[linear-gradient(145deg,#20335f_0%,#3453a7_56%,#8fb0ff_100%)] drop-shadow-[0_18px_36px_rgba(52,83,167,0.22)] ${isPortraitMobile ? "w-[360px]" : "w-[310px] sm:w-[380px] md:w-[450px] lg:w-[530px]"}`}
-                style={{
-                  WebkitMaskImage: BRAND_LOGO_MASK_URL,
-                  maskImage: BRAND_LOGO_MASK_URL,
-                  WebkitMaskRepeat: "no-repeat",
-                  maskRepeat: "no-repeat",
-                  WebkitMaskPosition: "center",
-                  maskPosition: "center",
-                  WebkitMaskSize: "contain",
-                  maskSize: "contain",
-                }}
+              <img
+                src={BRAND_LOGO_SRC}
+                alt="مجمع الحبيِّب لتحفيظ القرآن الكريم"
+                draggable={false}
+                className={`relative rounded-[2rem] object-contain drop-shadow-[0_18px_36px_rgba(52,83,167,0.22)] ${isPortraitMobile ? "h-[220px] w-[220px]" : "h-[170px] w-[170px] sm:h-[210px] sm:w-[210px] md:h-[250px] md:w-[250px] lg:h-[300px] lg:w-[300px]"}`}
               />
             </div>
 
-            <h1 className={`${isPortraitMobile ? "-mt-6" : "-mt-10 sm:-mt-12 lg:-mt-14"} max-w-4xl pb-2 bg-[linear-gradient(135deg,#20335f_0%,#3453a7_58%,#7d9ff5_100%)] bg-clip-text text-balance text-4xl font-black leading-[1.24] tracking-tight text-transparent sm:text-5xl lg:text-6xl`}>
+            <h1 className={`${isPortraitMobile ? "mt-2" : "mt-4 sm:mt-5 lg:mt-6"} max-w-4xl pb-2 bg-[linear-gradient(135deg,#20335f_0%,#3453a7_58%,#7d9ff5_100%)] bg-clip-text text-balance text-4xl font-black leading-[1.24] tracking-tight text-transparent sm:text-5xl lg:text-6xl`}>
               <span className="block">مجمع حلقات الحبيِّب</span>
             </h1>
 

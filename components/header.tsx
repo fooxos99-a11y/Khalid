@@ -68,7 +68,7 @@ import {
 } from "@/lib/push-subscription-client";
 
 const NOTIFICATION_PERMISSION_UPDATED_EVENT = "app-notification-permission-updated";
-const BRAND_LOGO_MASK_URL = 'url("/%D8%AE%D8%A7%D9%84%D8%AF.png")';
+const BRAND_LOGO_SRC = "/%D8%AE%D8%A7%D9%84%D8%AF.png";
 
 interface Circle {
   name: string;
@@ -262,21 +262,11 @@ function HeaderLogo({
       onClick={onClick}
       className={wrapperClassName}
     >
-      <div
-        role="img"
-        aria-label="مجمع الحبيِّب لتحفيظ القرآن الكريم"
+      <img
+        src={BRAND_LOGO_SRC}
+        alt="مجمع الحبيِّب لتحفيظ القرآن الكريم"
         className={logoClassName}
-        style={{
-          backgroundColor: "#ffffff",
-          WebkitMaskImage: BRAND_LOGO_MASK_URL,
-          maskImage: BRAND_LOGO_MASK_URL,
-          WebkitMaskRepeat: "no-repeat",
-          maskRepeat: "no-repeat",
-          WebkitMaskPosition: "center",
-          maskPosition: "center",
-          WebkitMaskSize: "contain",
-          maskSize: "contain",
-        }}
+        draggable={false}
       />
     </button>
   );
@@ -1185,7 +1175,7 @@ export function Header() {
             <HeaderLogo
               onClick={() => handleNav("/")}
               wrapperClassName="cursor-pointer"
-              logoClassName="w-24 md:w-28 aspect-[5625/4500]"
+              logoClassName="h-16 w-16 rounded-xl object-contain shadow-[0_10px_30px_rgba(15,47,109,0.22)] md:h-20 md:w-20"
             />
           </div>
 
@@ -1362,7 +1352,7 @@ export function Header() {
             <HeaderLogo
               onClick={() => handleNav("/")}
               wrapperClassName="cursor-pointer translate-x-5 -translate-y-2"
-              logoClassName="w-24 aspect-[5625/4500]"
+              logoClassName="h-16 w-16 rounded-xl object-contain shadow-[0_10px_24px_rgba(15,47,109,0.22)]"
             />
             <button
               onClick={() => setIsMobileMenuOpen(false)}

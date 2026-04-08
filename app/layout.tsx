@@ -16,7 +16,10 @@ const readexPro = Readex_Pro({ subsets: ["arabic", "latin"], variable: "--font-d
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://habiib.org"),
-  title: "مجمع الملك خالد",
+  title: {
+    default: "مجمع الملك خالد",
+    absolute: "مجمع الملك خالد",
+  },
   generator: "v0.app",
   manifest: "/manifest.webmanifest",
   applicationName: "مجمع الملك خالد",
@@ -29,12 +32,14 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    apple: "/4321-transparent.png?v=3",
+    apple: "/apple-icon.png?v=4",
     icon: [
-      { url: "/browser-tab-icon.png?v=3", type: "image/png", sizes: "512x512" },
+      { url: "/icon-192.png?v=4", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png?v=4", type: "image/png", sizes: "512x512" },
+      { url: "/browser-tab-icon.png?v=4", type: "image/png", sizes: "512x512" },
     ],
     shortcut: [
-      { url: "/browser-tab-icon.png?v=3", type: "image/png", sizes: "512x512" },
+      { url: "/browser-tab-icon.png?v=4", type: "image/png", sizes: "512x512" },
     ],
   },
 }

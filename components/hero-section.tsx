@@ -31,7 +31,7 @@ export function HeroSection() {
       <div className="container relative mx-auto">
         <div className={`mx-auto flex min-h-[calc(100vh-7rem)] max-w-6xl flex-col items-center justify-start gap-4 ${isPortraitMobile ? "pt-14" : "pt-12 sm:pt-14 lg:gap-6 lg:pt-16"}`}>
           <div className="flex flex-col items-center text-center">
-            <div className={`relative ${isPortraitMobile ? "mb-0" : "-mb-2 sm:-mb-3"}`}>
+            <div className={`relative ${isPortraitMobile ? "-mt-1 mb-0" : "-mt-2 -mb-2 sm:-mt-3 sm:-mb-3"}`}>
               <div className="absolute inset-x-[14%] bottom-[8%] h-14 rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.24)_0%,rgba(143,176,255,0)_72%)] blur-2xl" />
               <div
                 role="img"

@@ -1,9 +1,10 @@
 export default function manifest() {
-  const mobileLogoPath = "/4321.png"
+  const appIcon192Path = "/icon-192.png"
+  const appIcon512Path = "/icon-512.png"
 
   return {
     name: "مجمع الملك خالد",
-    short_name: "الملك خالد",
+    short_name: "مجمع الملك خالد",
     id: "/",
     start_url: "/",
     scope: "/",
@@ -15,14 +16,16 @@ export default function manifest() {
     dir: "rtl",
     icons: [
       {
-        src: mobileLogoPath,
+        src: appIcon192Path,
         type: "image/png",
-        sizes: "512x512",
+        sizes: "192x192",
+        purpose: "any maskable",
       },
       {
-        src: mobileLogoPath,
+        src: appIcon512Path,
         type: "image/png",
         sizes: "512x512",
+        purpose: "any maskable",
       },
     ],
   }

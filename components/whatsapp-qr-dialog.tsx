@@ -120,6 +120,8 @@ export function WhatsAppQrDialog({ open, onOpenChange, initialStatus }: WhatsApp
   const statusUi = useMemo(() => getStatusUi(status), [status])
   const canDisconnect = status.ready && status.authenticated && status.status === "connected" && !isDisconnecting
 
+  const wait = (ms: number) => new Promise((resolve) => window.setTimeout(resolve, ms))
+
   const fetchStatus = async ({ silent = false }: { silent?: boolean } = {}) => {
     try {
       if (!silent) {
@@ -158,6 +160,60 @@ export function WhatsAppQrDialog({ open, onOpenChange, initialStatus }: WhatsApp
 
     void fetchStatus()
   }, [open, initialStatus])
+
+  const handleRefresh = async () => {
+    try {
+      setIsLoadingStatus(true)
+
+      const shouldRegenerateQr = status.workerOnline && !status.ready
+
+      if (shouldRegenerateQr) {
+        const response = await fetch("/api/whatsapp/disconnect", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        })
+
+        const data = await response.json().catch(() => null)
+        if (!response.ok) {
+          throw new Error(data?.error || "تعذر تحديث الباركود")
+        }
+
+        setStatus((current) => ({
+          ...current,
+          status: "fetching_qr",
+          ready: false,
+          authenticated: false,
+          qrAvailable: false,
+          qrImageUrl: null,
+        }))
+
+        for (let attempt = 0; attempt < 6; attempt += 1) {
+          await wait(2000)
+
+          const statusResponse = await fetch(`/api/whatsapp/status?t=${Date.now()}`, { cache: "no-store" })
+          if (!statusResponse.ok) {
+            continue
+          }
+
+          const nextStatus = (await statusResponse.json()) as WhatsAppStatusResponse
+          setStatus({ ...DEFAULT_STATUS, ...nextStatus })
+          setImageFailed(false)
+
+          if (nextStatus.qrAvailable || nextStatus.ready || nextStatus.status === "authenticating") {
+            return
+          }
+        }
+
+        throw new Error("لم يصل باركود جديد بعد. أغلق النافذة وافتحها مرة أخرى بعد لحظات.")
+      }
+
+      await fetchStatus({ silent: true })
+    } catch (error) {
+      await alertDialog(error instanceof Error ? error.message : "تعذر تحديث حالة واتساب حالياً", "خطأ")
+    } finally {
+      setIsLoadingStatus(false)
+    }
+  }
 
   const handleDisconnect = async () => {
     const confirmed = await confirmDialog({
@@ -220,8 +276,8 @@ export function WhatsAppQrDialog({ open, onOpenChange, initialStatus }: WhatsApp
                   <Button
                     type="button"
                     variant="outline"
-                    onClick={() => void fetchStatus()}
-                    disabled={isLoadingStatus}
+                    onClick={() => void handleRefresh()}
+                    disabled={isLoadingStatus || isDisconnecting}
                     className="h-10 rounded-2xl border-[#d7e3f2] bg-white px-3 text-sm font-black text-[#3453a7] hover:bg-[#f8fbff]"
                   >
                     <RefreshCw className={`me-1.5 h-4 w-4 ${isLoadingStatus ? "animate-spin" : ""}`} />

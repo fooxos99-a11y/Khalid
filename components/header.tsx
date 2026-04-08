@@ -68,7 +68,7 @@ import {
 } from "@/lib/push-subscription-client";
 
 const NOTIFICATION_PERMISSION_UPDATED_EVENT = "app-notification-permission-updated";
-const BRAND_LOGO_SRC = "/123-transparent.png";
+const BRAND_LOGO_SRC = "/4321-transparent.png";
 
 interface Circle {
   name: string;
@@ -1351,7 +1351,7 @@ export function Header() {
           <div className="flex items-start justify-between mb-2">
             <HeaderLogo
               onClick={() => handleNav("/")}
-              wrapperClassName="cursor-pointer translate-x-5 -translate-y-2"
+              wrapperClassName="cursor-pointer translate-x-1 -translate-y-2"
               logoClassName="h-16 w-16 object-contain drop-shadow-[0_10px_24px_rgba(15,47,109,0.22)]"
             />
             <button

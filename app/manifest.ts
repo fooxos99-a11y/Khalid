@@ -1,5 +1,5 @@
 export default function manifest() {
-  const mobileLogoPath = "/123.png"
+  const mobileLogoPath = "/4321.png"
 
   return {
     name: "مجمع الملك خالد",

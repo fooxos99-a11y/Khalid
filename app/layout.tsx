@@ -29,12 +29,12 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    apple: "/123-transparent.png?v=2",
+    apple: "/4321-transparent.png?v=3",
     icon: [
-      { url: "/browser-tab-icon.png?v=2", type: "image/png", sizes: "512x512" },
+      { url: "/browser-tab-icon.png?v=3", type: "image/png", sizes: "512x512" },
     ],
     shortcut: [
-      { url: "/browser-tab-icon.png?v=2", type: "image/png", sizes: "512x512" },
+      { url: "/browser-tab-icon.png?v=3", type: "image/png", sizes: "512x512" },
     ],
   },
 }

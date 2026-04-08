@@ -29,6 +29,7 @@ const INCOMING_SYNC_CHAT_LIMIT = Number(process.env.WHATSAPP_INCOMING_SYNC_CHAT_
 const INCOMING_SYNC_MESSAGE_LIMIT = Number(process.env.WHATSAPP_INCOMING_SYNC_MESSAGE_LIMIT || 8)
 const IS_LINUX = process.platform === "linux"
 const HEARTBEAT_INTERVAL_MS = Number(process.env.WHATSAPP_HEARTBEAT_INTERVAL_MS || 15000)
+const STALE_QR_THRESHOLD_MS = Number(process.env.WHATSAPP_STALE_QR_THRESHOLD_MS || 360000)
 
 const PUPPETEER_ARGS = IS_LINUX
   ? [
@@ -76,6 +77,10 @@ if (
   throw new Error(
     "Invalid incoming sync configuration. Ensure incoming sync values are valid positive numbers."
   )
+}
+
+if (Number.isNaN(STALE_QR_THRESHOLD_MS) || STALE_QR_THRESHOLD_MS <= 0) {
+  throw new Error("Invalid QR stale threshold. Ensure WHATSAPP_STALE_QR_THRESHOLD_MS is a valid positive number.")
 }
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
@@ -135,6 +140,57 @@ function log(message, extra) {
   }
 
   console.log(`[${timestamp}] ${message}`, extra)
+}
+
+function getExistingFileMtimeMs(filePath) {
+  try {
+    if (!fs.existsSync(filePath)) {
+      return 0
+    }
+
+    return fs.statSync(filePath).mtimeMs || 0
+  } catch {
+    return 0
+  }
+}
+
+function hydrateWorkerStateFromDisk() {
+  try {
+    if (!fs.existsSync(STATUS_FILE_PATH)) {
+      return
+    }
+
+    const rawStatus = fs.readFileSync(STATUS_FILE_PATH, "utf8")
+    if (!rawStatus.trim()) {
+      return
+    }
+
+    workerState = {
+      ...workerState,
+      ...JSON.parse(rawStatus),
+    }
+  } catch (error) {
+    log("Failed to hydrate WhatsApp worker state from disk.", error)
+  }
+}
+
+function getQrUpdatedTimeMs() {
+  const qrUpdatedAtMs = workerState.qrUpdatedAt ? new Date(workerState.qrUpdatedAt).getTime() : 0
+  const qrFileMtimeMs = getExistingFileMtimeMs(QR_IMAGE_PATH)
+  return Math.max(qrUpdatedAtMs || 0, qrFileMtimeMs || 0)
+}
+
+function hasStaleQrSession() {
+  if (workerState.ready || workerState.authenticated) {
+    return false
+  }
+
+  const qrUpdatedTimeMs = getQrUpdatedTimeMs()
+  if (!qrUpdatedTimeMs) {
+    return false
+  }
+
+  return Date.now() - qrUpdatedTimeMs > STALE_QR_THRESHOLD_MS
 }
 
 function sleep(ms) {
@@ -863,6 +919,26 @@ async function bootstrap() {
     return
   }
 
+  hydrateWorkerStateFromDisk()
+
+  if (hasStaleQrSession()) {
+    log(`Detected stale WhatsApp QR session older than ${STALE_QR_THRESHOLD_MS}ms. Clearing cached session before startup.`)
+    removeQrImage()
+    removeAuthSessionDirectory()
+    workerState = {
+      ...workerState,
+      status: "starting",
+      qrAvailable: false,
+      ready: false,
+      authenticated: false,
+      qrUpdatedAt: null,
+      qrValue: null,
+      connectedAt: null,
+      authFailedAt: null,
+      lastError: null,
+    }
+  }
+
   persistWorkerState({
     status: "starting",
     qrAvailable: fs.existsSync(QR_IMAGE_PATH),
@@ -873,6 +949,11 @@ async function bootstrap() {
 
   setInterval(() => {
     persistWorkerState({ lastHeartbeatAt: new Date().toISOString() })
+
+    if (!isResettingSession && hasStaleQrSession()) {
+      log(`WhatsApp QR session is stale after ${STALE_QR_THRESHOLD_MS}ms in waiting state. Resetting session automatically.`)
+      void resetWhatsAppSession()
+    }
   }, HEARTBEAT_INTERVAL_MS).unref()
 
   subscribeToCommands()

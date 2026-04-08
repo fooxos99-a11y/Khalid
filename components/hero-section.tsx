@@ -31,7 +31,7 @@ export function HeroSection() {
       <div className="container relative mx-auto">
         <div className={`mx-auto flex min-h-[calc(100vh-7rem)] max-w-6xl flex-col items-center justify-start gap-4 ${isPortraitMobile ? "-mt-0.5 pt-9" : "-mt-2 pt-4 sm:-mt-3 sm:pt-5 lg:-mt-4 lg:gap-6 lg:pt-6"}`}>
           <div className="flex flex-col items-center text-center">
-            <div className={`relative ${isPortraitMobile ? "mb-3" : "mb-1 sm:mb-2"}`}>
+            <div className={`relative ${isPortraitMobile ? "mb-1" : "mb-0 sm:mb-1"}`}>
               <div className="absolute inset-x-[14%] bottom-[8%] h-14 rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.24)_0%,rgba(143,176,255,0)_72%)] blur-2xl" />
               <div
                 role="img"
@@ -51,7 +51,7 @@ export function HeroSection() {
               />
             </div>
 
-            <h1 className={`${isPortraitMobile ? "mt-2" : "mt-4 sm:mt-5 lg:mt-6"} max-w-4xl pb-2 bg-[linear-gradient(135deg,#20335f_0%,#3453a7_58%,#7d9ff5_100%)] bg-clip-text text-balance text-4xl font-black leading-[1.24] tracking-tight text-transparent sm:text-5xl lg:text-6xl`}>
+            <h1 className={`${isPortraitMobile ? "mt-0" : "mt-1 sm:mt-2 lg:mt-3"} max-w-4xl pb-2 bg-[linear-gradient(135deg,#20335f_0%,#3453a7_58%,#7d9ff5_100%)] bg-clip-text text-balance text-4xl font-black leading-[1.24] tracking-tight text-transparent sm:text-5xl lg:text-6xl`}>
               <span className="block">مجمع الملك خالد</span>
             </h1>
 

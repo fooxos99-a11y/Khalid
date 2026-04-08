@@ -1351,8 +1351,8 @@ export function Header() {
           <div className="flex items-start justify-between mb-2">
             <HeaderLogo
               onClick={() => handleNav("/")}
-              wrapperClassName="cursor-pointer translate-x-1 -translate-y-2"
-              logoClassName="h-16 w-16 object-contain drop-shadow-[0_10px_24px_rgba(15,47,109,0.22)]"
+              wrapperClassName="cursor-pointer -translate-x-1 -translate-y-1.5"
+              logoClassName="h-14 w-14 object-contain drop-shadow-[0_10px_24px_rgba(15,47,109,0.22)]"
             />
             <button
               onClick={() => setIsMobileMenuOpen(false)}

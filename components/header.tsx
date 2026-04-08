@@ -68,6 +68,7 @@ import {
 } from "@/lib/push-subscription-client";
 
 const NOTIFICATION_PERMISSION_UPDATED_EVENT = "app-notification-permission-updated";
+const BRAND_LOGO_MASK_URL = 'url("/%D8%A7%D9%84%D8%B4%D8%B9%D8%A7%D8%B1.png")';
 
 interface Circle {
   name: string;
@@ -267,8 +268,8 @@ function HeaderLogo({
         className={logoClassName}
         style={{
           backgroundColor: "#ffffff",
-          WebkitMaskImage: 'url("/loogo1.png")',
-          maskImage: 'url("/loogo1.png")',
+          WebkitMaskImage: BRAND_LOGO_MASK_URL,
+          maskImage: BRAND_LOGO_MASK_URL,
           WebkitMaskRepeat: "no-repeat",
           maskRepeat: "no-repeat",
           WebkitMaskPosition: "center",

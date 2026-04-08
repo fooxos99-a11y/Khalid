@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 
+const BRAND_LOGO_MASK_URL = 'url("/%D8%A7%D9%84%D8%B4%D8%B9%D8%A7%D8%B1.png")'
+
 export function HeroSection() {
   const [isPortraitMobile, setIsPortraitMobile] = useState(false)
 
@@ -35,8 +37,8 @@ export function HeroSection() {
                 aria-label="مجمع الحبيِّب لتحفيظ القرآن الكريم"
                 className={`relative aspect-[5625/4500] bg-[linear-gradient(145deg,#20335f_0%,#3453a7_56%,#8fb0ff_100%)] drop-shadow-[0_18px_36px_rgba(52,83,167,0.22)] ${isPortraitMobile ? "w-[360px]" : "w-[310px] sm:w-[380px] md:w-[450px] lg:w-[530px]"}`}
                 style={{
-                  WebkitMaskImage: 'url("/loogo1.png")',
-                  maskImage: 'url("/loogo1.png")',
+                  WebkitMaskImage: BRAND_LOGO_MASK_URL,
+                  maskImage: BRAND_LOGO_MASK_URL,
                   WebkitMaskRepeat: "no-repeat",
                   maskRepeat: "no-repeat",
                   WebkitMaskPosition: "center",

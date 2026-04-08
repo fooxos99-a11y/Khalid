@@ -15,7 +15,7 @@ export default function TermsPage() {
               <FileText className="w-10 h-10 text-white" />
             </div>
             <h1 className="text-5xl font-bold text-[#1a2332] mb-4">شروط الخدمة</h1>
-            <p className="text-xl text-[#1a2332]/70">الشروط والأحكام الخاصة باستخدام منصة مجمع حلقات الحبيب</p>
+            <p className="text-xl text-[#1a2332]/70">الشروط والأحكام الخاصة باستخدام منصة مجمع الملك خالد</p>
           </div>
 
           <Card className="border-2 border-[#E4A11B]/20 shadow-xl">
@@ -24,14 +24,14 @@ export default function TermsPage() {
             </CardHeader>
             <CardContent className="pt-6 space-y-6 text-lg leading-relaxed text-[#1a2332]">
               <p>
-                مرحباً بكم في منصة مجمع حلقات الحبيب. باستخدامك لهذه المنصة، فإنك توافق على الالتزام بالشروط والأحكام
+                مرحباً بكم في منصة مجمع الملك خالد. باستخدامك لهذه المنصة، فإنك توافق على الالتزام بالشروط والأحكام
                 التالية. يرجى قراءة هذه الشروط بعناية قبل استخدام خدماتنا.
               </p>
 
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-[#E4A11B]">1. استخدام المنصة</h3>
                 <p>
-                  تم تصميم هذه المنصة لخدمة طلاب مجمع حلقات الحبيب لتحفيظ القرآن الكريم. يجب استخدام المنصة للأغراض
+                  تم تصميم هذه المنصة لخدمة طلاب مجمع الملك خالد لتحفيظ القرآن الكريم. يجب استخدام المنصة للأغراض
                   التعليمية والتربوية فقط.
                 </p>
               </div>

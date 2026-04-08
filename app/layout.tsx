@@ -16,14 +16,14 @@ const readexPro = Readex_Pro({ subsets: ["arabic", "latin"], variable: "--font-d
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://habiib.org"),
-  title: "مجمع الحبيِّب",
+  title: "مجمع الملك خالد",
   generator: "v0.app",
   manifest: "/manifest.webmanifest",
-  applicationName: "مجمع الحبيِّب",
+  applicationName: "مجمع الملك خالد",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "مجمع الحبيِّب",
+    title: "مجمع الملك خالد",
   },
   formatDetection: {
     telephone: false,

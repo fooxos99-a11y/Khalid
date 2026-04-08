@@ -56,7 +56,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-[#1f2937]">
                 <MapPin className="w-5 h-5 text-[#3453a7]" />
-                <span>السعودية، بريدة، الهلال</span>
+                <span>السعودية، بريدة، المنتزه</span>
               </li>
             </ul>
             <div className="flex gap-4 mt-6">

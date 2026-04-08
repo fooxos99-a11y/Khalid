@@ -2,8 +2,8 @@ export default function manifest() {
   const mobileLogoPath = "/%D8%B4%D8%B9%D8%A7%D8%B1%20%D8%A7%D9%84%D8%AC%D9%88%D8%A7%D9%84.png"
 
   return {
-    name: "مجمع الحبيِّب",
-    short_name: "مجمع الحبيِّب",
+    name: "مجمع الملك خالد",
+    short_name: "الملك خالد",
     id: "/",
     start_url: "/",
     scope: "/",

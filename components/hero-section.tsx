@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const BRAND_LOGO_SRC = "/%D8%AE%D8%A7%D9%84%D8%AF.png"
+const BRAND_LOGO_SRC = "/123.png"
 
 export function HeroSection() {
   const [isPortraitMobile, setIsPortraitMobile] = useState(false)
@@ -34,20 +34,20 @@ export function HeroSection() {
               <div className="absolute inset-x-[14%] bottom-[8%] h-14 rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.24)_0%,rgba(143,176,255,0)_72%)] blur-2xl" />
               <img
                 src={BRAND_LOGO_SRC}
-                alt="مجمع الحبيِّب لتحفيظ القرآن الكريم"
+                alt="مجمع الملك خالد لتحفيظ القرآن الكريم"
                 draggable={false}
                 className={`relative rounded-[2rem] object-contain drop-shadow-[0_18px_36px_rgba(52,83,167,0.22)] ${isPortraitMobile ? "h-[220px] w-[220px]" : "h-[170px] w-[170px] sm:h-[210px] sm:w-[210px] md:h-[250px] md:w-[250px] lg:h-[300px] lg:w-[300px]"}`}
               />
             </div>
 
             <h1 className={`${isPortraitMobile ? "mt-2" : "mt-4 sm:mt-5 lg:mt-6"} max-w-4xl pb-2 bg-[linear-gradient(135deg,#20335f_0%,#3453a7_58%,#7d9ff5_100%)] bg-clip-text text-balance text-4xl font-black leading-[1.24] tracking-tight text-transparent sm:text-5xl lg:text-6xl`}>
-              <span className="block">مجمع حلقات الحبيِّب</span>
+              <span className="block">مجمع الملك خالد</span>
             </h1>
 
             <div className="mt-3 h-1.5 w-28 rounded-full bg-[linear-gradient(90deg,#3453a7_0%,#8fb0ff_50%,#3453a7_100%)] shadow-[0_8px_22px_rgba(52,83,167,0.18)]" />
 
             <p className="mt-2 max-w-3xl text-base leading-8 text-[#4b5563] sm:mt-3 sm:text-lg">
-              مجمع حلقات الحبيِّب لتحفيظ القران الكريم يسعى لتقديم بيئة تربوية متميزة تجمع بين الأصالة والمعاصرة.
+              مجمع الملك خالد لتحفيظ القران الكريم يسعى لتقديم بيئة تربوية متميزة تجمع بين الأصالة والمعاصرة.
               نهدف إلى تخريج جيل قرآني متقن لكتاب الله، ملتزم بتعاليمه، قادر على خدمة دينه ومجتمعه. مع التركيز على
               الجودة والإتقان والمتابعة المستمرة لكل طالب.
             </p>

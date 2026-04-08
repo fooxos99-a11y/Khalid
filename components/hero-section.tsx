@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const BRAND_LOGO_MASK_URL = 'url("/%D8%A7%D9%84%D8%B4%D8%B9%D8%A7%D8%B1.png")'
+const BRAND_LOGO_MASK_URL = 'url("/%D8%AE%D8%A7%D9%84%D8%AF.png")'
 
 export function HeroSection() {
   const [isPortraitMobile, setIsPortraitMobile] = useState(false)

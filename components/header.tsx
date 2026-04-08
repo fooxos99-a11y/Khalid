@@ -68,7 +68,7 @@ import {
 } from "@/lib/push-subscription-client";
 
 const NOTIFICATION_PERMISSION_UPDATED_EVENT = "app-notification-permission-updated";
-const BRAND_LOGO_MASK_URL = 'url("/%D8%A7%D9%84%D8%B4%D8%B9%D8%A7%D8%B1.png")';
+const BRAND_LOGO_MASK_URL = 'url("/%D8%AE%D8%A7%D9%84%D8%AF.png")';
 
 interface Circle {
   name: string;

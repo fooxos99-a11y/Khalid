@@ -45,24 +45,6 @@ const DEFAULT_STATUS: WhatsAppStatusResponse = {
   qrImageUrl: null,
 }
 
-function getAutoRefreshIntervalMs(status: WhatsAppStatusResponse) {
-  if (status.ready) {
-    return 0
-  }
-
-  switch (status.status) {
-    case "authenticating":
-    case "disconnecting":
-    case "fetching_qr":
-    case "starting":
-      return 2500
-    case "waiting_for_qr":
-      return 10000
-    default:
-      return 0
-  }
-}
-
 function getStatusUi(status: WhatsAppStatusResponse) {
   if (status.ready && status.authenticated && status.status === "connected") {
     return {
@@ -137,7 +119,6 @@ export function WhatsAppQrDialog({ open, onOpenChange, initialStatus }: WhatsApp
 
   const statusUi = useMemo(() => getStatusUi(status), [status])
   const canDisconnect = status.ready && status.authenticated && status.status === "connected" && !isDisconnecting
-  const autoRefreshIntervalMs = getAutoRefreshIntervalMs(status)
 
   const fetchStatus = async ({ silent = false }: { silent?: boolean } = {}) => {
     try {
@@ -177,20 +158,6 @@ export function WhatsAppQrDialog({ open, onOpenChange, initialStatus }: WhatsApp
 
     void fetchStatus()
   }, [open, initialStatus])
-
-  useEffect(() => {
-    if (!open || autoRefreshIntervalMs <= 0) {
-      return
-    }
-
-    const intervalId = window.setInterval(() => {
-      void fetchStatus({ silent: true })
-    }, autoRefreshIntervalMs)
-
-    return () => {
-      window.clearInterval(intervalId)
-    }
-  }, [open, autoRefreshIntervalMs])
 
   const handleDisconnect = async () => {
     const confirmed = await confirmDialog({

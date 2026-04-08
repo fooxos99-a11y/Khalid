@@ -25,6 +25,8 @@ interface UserEntry {
   role: string
 }
 
+const IMMUTABLE_MANAGER_ACCOUNT_NUMBER = 1483
+
 export default function AdminsManagement() {
   const { isLoading: authLoading, isVerified: authVerified } = useAdminAuth("الهيكل الإداري");
 
@@ -69,7 +71,7 @@ export default function AdminsManagement() {
         .order("account_number", { ascending: true })
 
       if (!error && usersData) {
-        setUsers(usersData)
+        setUsers(usersData.filter((user) => user.account_number !== IMMUTABLE_MANAGER_ACCOUNT_NUMBER))
       }
 
       const rolesRes = await fetch("/api/roles")
@@ -190,6 +192,12 @@ export default function AdminsManagement() {
   }
 
   const handleDeleteUser = async (userId: string) => {
+    const targetUser = users.find((user) => user.id === userId)
+    if (targetUser?.account_number === IMMUTABLE_MANAGER_ACCOUNT_NUMBER) {
+      toast({ title: "غير مسموح", description: "المدير الأساسي ثابت ولا يمكن حذفه", variant: "destructive" })
+      return
+    }
+
     try {
       const supabase = createClient()
       const { error } = await supabase.from("users").delete().eq("id", userId)
@@ -202,6 +210,12 @@ export default function AdminsManagement() {
   }
 
   const handleChangeRole = async (userId: string, newRole: string) => {
+    const targetUser = users.find((user) => user.id === userId)
+    if (targetUser?.account_number === IMMUTABLE_MANAGER_ACCOUNT_NUMBER) {
+      toast({ title: "غير مسموح", description: "المدير الأساسي ثابت ولا يمكن تعديل مسماه", variant: "destructive" })
+      return
+    }
+
     try {
       const supabase = createClient()
       const { error } = await supabase.from("users").update({ role: newRole }).eq("id", userId)

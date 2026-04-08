@@ -68,7 +68,7 @@ import {
 } from "@/lib/push-subscription-client";
 
 const NOTIFICATION_PERMISSION_UPDATED_EVENT = "app-notification-permission-updated";
-const BRAND_LOGO_SRC = "/123.png";
+const BRAND_LOGO_SRC = "/123-transparent.png";
 
 interface Circle {
   name: string;
@@ -1175,7 +1175,7 @@ export function Header() {
             <HeaderLogo
               onClick={() => handleNav("/")}
               wrapperClassName="cursor-pointer"
-              logoClassName="h-16 w-16 rounded-xl object-contain shadow-[0_10px_30px_rgba(15,47,109,0.22)] md:h-20 md:w-20"
+              logoClassName="h-16 w-16 object-contain drop-shadow-[0_10px_30px_rgba(15,47,109,0.22)] md:h-20 md:w-20"
             />
           </div>
 
@@ -1352,7 +1352,7 @@ export function Header() {
             <HeaderLogo
               onClick={() => handleNav("/")}
               wrapperClassName="cursor-pointer translate-x-5 -translate-y-2"
-              logoClassName="h-16 w-16 rounded-xl object-contain shadow-[0_10px_24px_rgba(15,47,109,0.22)]"
+              logoClassName="h-16 w-16 object-contain drop-shadow-[0_10px_24px_rgba(15,47,109,0.22)]"
             />
             <button
               onClick={() => setIsMobileMenuOpen(false)}

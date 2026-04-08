@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react"
 
-const BRAND_LOGO_SRC = "/123.png"
+const BRAND_LOGO_SRC = "/123-transparent.png"
+const BRAND_LOGO_MASK_URL = 'url("/123-transparent.png")'
 
 export function HeroSection() {
   const [isPortraitMobile, setIsPortraitMobile] = useState(false)
@@ -32,11 +33,21 @@ export function HeroSection() {
           <div className="flex flex-col items-center text-center">
             <div className={`relative ${isPortraitMobile ? "mb-3" : "mb-1 sm:mb-2"}`}>
               <div className="absolute inset-x-[14%] bottom-[8%] h-14 rounded-full bg-[radial-gradient(circle,rgba(143,176,255,0.24)_0%,rgba(143,176,255,0)_72%)] blur-2xl" />
-              <img
-                src={BRAND_LOGO_SRC}
-                alt="مجمع الملك خالد لتحفيظ القرآن الكريم"
-                draggable={false}
-                className={`relative rounded-[2rem] object-contain drop-shadow-[0_18px_36px_rgba(52,83,167,0.22)] ${isPortraitMobile ? "h-[220px] w-[220px]" : "h-[170px] w-[170px] sm:h-[210px] sm:w-[210px] md:h-[250px] md:w-[250px] lg:h-[300px] lg:w-[300px]"}`}
+              <div
+                role="img"
+                aria-label="مجمع الملك خالد لتحفيظ القرآن الكريم"
+                className={`relative drop-shadow-[0_18px_36px_rgba(52,83,167,0.22)] ${isPortraitMobile ? "h-[220px] w-[220px]" : "h-[170px] w-[170px] sm:h-[210px] sm:w-[210px] md:h-[250px] md:w-[250px] lg:h-[300px] lg:w-[300px]"}`}
+                style={{
+                  background: "linear-gradient(145deg,#20335f 0%,#3453a7 56%,#8fb0ff 100%)",
+                  WebkitMaskImage: BRAND_LOGO_MASK_URL,
+                  maskImage: BRAND_LOGO_MASK_URL,
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                }}
               />
             </div>
 

@@ -1,0 +1,66 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+*.lnk
+.vscode/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+temp_head.log
+run_sql_output.txt
+
+# local migration artifacts
+schema-public.sql
+target-schema-check.json
+scripts/check-required-schema.cjs
+
+# local env files
+.env*.local
+.env
+.env*.txt
+.env_dump.txt
+my_env.txt
+
+# whatsapp worker session
+whatsapp-worker/.wwebjs_auth/
+/.wwebjs_cache/
+whatsapp-worker/.wwebjs_cache/
+whatsapp-worker/status.json
+whatsapp-worker/.wwebjs_auth_isolated/
+whatsapp-worker/current-qr-isolated.png
+whatsapp-worker/status-isolated.json
+whatsapp-worker/command-isolated.json
+whatsapp-worker/worker-isolated.lock
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# pnpm
+.pnpm-debug.log*
+
+.vercel

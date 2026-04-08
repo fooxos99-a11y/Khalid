@@ -1,0 +1,21 @@
+[Unit]
+Description=Habib Isolated Next.js App
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/habib-isolated-instance
+EnvironmentFile=/var/www/habib-isolated-instance/.env.local
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=HOSTNAME=127.0.0.1
+ExecStart=/usr/bin/pnpm start
+Restart=always
+RestartSec=5
+KillSignal=SIGINT
+SyslogIdentifier=habib-isolated-app
+
+[Install]
+WantedBy=multi-user.target

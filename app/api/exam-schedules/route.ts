@@ -203,7 +203,7 @@ export async function GET(request: Request) {
     const { data, error } = await query
     if (error) {
       if (isMissingExamPortionColumns(error)) {
-        return NextResponse.json({ error: "حقول نظام الأجزاء/الأحزاب غير مضافة بعد. نفذ ملف scripts/050_add_exam_portion_mode.sql ثم أعد المحاولة." }, { status: 503 })
+         return NextResponse.json({ error: "بنية الاختبارات غير مكتملة بعد. نفذ ملف scripts/053_fix_exams_schema.sql ثم أعد المحاولة." }, { status: 503 })
       }
 
       if (isMissingExamSchedulesTable(error)) {
@@ -219,7 +219,7 @@ export async function GET(request: Request) {
       return NextResponse.json({ schedules: [], tableMissing: false, error: "لا يوجد فصل نشط حاليًا." }, { status: 409 })
     }
     if (isMissingSemestersTable(error)) {
-      return NextResponse.json({ error: "جدول الفصول غير موجود بعد. نفذ ملف scripts/046_create_semesters.sql ثم أعد المحاولة." }, { status: 503 })
+      return NextResponse.json({ error: "بنية الاختبارات غير مكتملة بعد. نفذ ملف scripts/053_fix_exams_schema.sql ثم أعد المحاولة." }, { status: 503 })
     }
     return NextResponse.json({ error: getErrorMessage(error) }, { status: 500 })
   }
@@ -292,11 +292,11 @@ export async function POST(request: Request) {
 
     if (existingScheduleError) {
       if (isMissingExamPortionColumns(existingScheduleError)) {
-        return NextResponse.json({ error: "حقول نظام الأجزاء/الأحزاب غير مضافة بعد. نفذ ملف scripts/050_add_exam_portion_mode.sql ثم أعد المحاولة." }, { status: 503 })
+        return NextResponse.json({ error: "بنية الاختبارات غير مكتملة بعد. نفذ ملف scripts/053_fix_exams_schema.sql ثم أعد المحاولة." }, { status: 503 })
       }
 
       if (isMissingExamSchedulesTable(existingScheduleError)) {
-        return NextResponse.json({ error: "جدول مواعيد الاختبارات غير موجود بعد. طبّق ملف SQL أولاً.", tableMissing: true }, { status: 503 })
+        return NextResponse.json({ error: "بنية الاختبارات غير مكتملة بعد. نفذ ملف scripts/053_fix_exams_schema.sql ثم أعد المحاولة.", tableMissing: true }, { status: 503 })
       }
       throw existingScheduleError
     }

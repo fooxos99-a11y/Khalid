@@ -1016,7 +1016,7 @@ export default function AdminExamsPage() {
 
           {tableMissing ? (
             <div className="rounded-[28px] border border-amber-200 bg-white px-5 py-4 text-right text-sm font-bold leading-7 text-amber-800">
-              جدول الاختبارات غير موجود بعد. شغّل ملف 042_create_student_exams.sql في قاعدة البيانات أولاً، ثم ستعمل الصفحة بشكل كامل.
+                بنية الاختبارات غير مكتملة بعد. شغّل ملف scripts/053_fix_exams_schema.sql في قاعدة البيانات أولاً، ثم ستعمل الصفحة بشكل كامل.
             </div>
           ) : null}
 

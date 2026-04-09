@@ -313,7 +313,7 @@ export async function GET(request: Request) {
 
 		if (error) {
 			if (isMissingExamPortionColumns(error)) {
-				return NextResponse.json({ error: "حقول نظام الأجزاء/الأحزاب غير مضافة بعد. نفذ ملف scripts/050_add_exam_portion_mode.sql ثم أعد المحاولة." }, { status: 503 })
+				return NextResponse.json({ error: "بنية الاختبارات غير مكتملة بعد. نفذ ملف scripts/053_fix_exams_schema.sql ثم أعد المحاولة." }, { status: 503 })
 			}
 
 			if (isMissingStudentExamsTable(error)) {
@@ -330,7 +330,7 @@ export async function GET(request: Request) {
 			return NextResponse.json({ exams: [], tableMissing: false, error: "لا يوجد فصل نشط حاليًا." }, { status: 409 })
 		}
 		if (isMissingSemestersTable(error)) {
-			return NextResponse.json({ error: "جدول الفصول غير موجود بعد. نفذ ملف scripts/046_create_semesters.sql ثم أعد المحاولة." }, { status: 503 })
+			return NextResponse.json({ error: "بنية الاختبارات غير مكتملة بعد. نفذ ملف scripts/053_fix_exams_schema.sql ثم أعد المحاولة." }, { status: 503 })
 		}
 		return NextResponse.json({ error: getErrorMessage(error) }, { status: 500 })
 	}

@@ -1,4 +1,8 @@
-require("dotenv").config({ path: process.env.WORKER_ENV_FILE || ".env.local" })
+try {
+  require("dotenv").config({ path: process.env.WORKER_ENV_FILE || ".env.local" })
+} catch (error) {
+  console.warn("[WhatsApp Worker] dotenv is not installed; continuing with existing environment variables.")
+}
 
 const fs = require("fs")
 const path = require("path")
